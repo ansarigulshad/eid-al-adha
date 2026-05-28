@@ -321,6 +321,41 @@
   }
   @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 
+  /* ---------- the wandering Eid goat ---------- */
+  .goat-walk{
+    position:fixed;
+    bottom:8px;left:0;
+    width:120px;height:94px;
+    z-index:1;
+    animation:walk 26s linear infinite;
+    will-change:transform;
+  }
+  @keyframes walk{
+    from{transform:translateX(-180px);}
+    to{transform:translateX(calc(100vw + 70px));}
+  }
+  .goat-bob{
+    transform-origin:center bottom;
+    animation:goatBob .6s ease-in-out infinite;
+  }
+  @keyframes goatBob{
+    0%,100%{transform:translateY(0) rotate(-.7deg);}
+    50%{transform:translateY(-4px) rotate(.7deg);}
+  }
+  .goat-svg{
+    display:block;width:120px;height:94px;
+    filter:drop-shadow(0 7px 9px rgba(0,0,0,.45));
+  }
+  .leg{transform-box:fill-box;transform-origin:50% 8%;}
+  .leg.a{animation:stepA .6s ease-in-out infinite;}
+  .leg.b{animation:stepB .6s ease-in-out infinite;}
+  @keyframes stepA{0%,100%{transform:rotate(15deg);}50%{transform:rotate(-15deg);}}
+  @keyframes stepB{0%,100%{transform:rotate(-15deg);}50%{transform:rotate(15deg);}}
+  .tail{transform-box:fill-box;transform-origin:95% 40%;animation:wag .75s ease-in-out infinite;}
+  @keyframes wag{0%,100%{transform:rotate(-14deg);}50%{transform:rotate(18deg);}}
+  .ear{transform-box:fill-box;transform-origin:85% 60%;animation:earTwitch 3.2s ease-in-out infinite;}
+  @keyframes earTwitch{0%,84%,100%{transform:rotate(0);}90%{transform:rotate(-18deg);}}
+
   @media (max-width:480px){
     .moon{width:78px;height:78px;top:5vh;right:8vw;
       box-shadow:16px 12px 0 2px var(--gold-light),0 0 30px 8px rgba(251,240,200,.4);}
@@ -332,6 +367,7 @@
     *{animation-duration:.001s !important;animation-iteration-count:1 !important;}
     .star,.mote{opacity:.5;}
     [class].title,.wish,.takbir .line,.salaam,.divider,.eyebrow,.closing,.arch-svg,.rosette,.corner{opacity:1 !important;transform:none !important;}
+    .goat-walk{transform:translateX(24px) !important;}
   }
 </style>
 </head>
@@ -341,6 +377,37 @@
   <div class="dust" id="dust"></div>
 
   <div class="moon"><span class="little-star">✦</span></div>
+
+  <!-- the wandering Eid goat -->
+  <div class="goat-walk" aria-hidden="true">
+    <div class="goat-bob">
+      <svg class="goat-svg" viewBox="0 0 130 95" fill="none">
+        <g stroke="var(--gold)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+          <!-- tail -->
+          <path class="tail" d="M27 46 L16 41 L23 53 Z" fill="var(--cream)"/>
+          <!-- legs (behind body) -->
+          <g class="leg b"><rect x="35" y="56" width="6" height="28" rx="3" fill="var(--cream)"/></g>
+          <g class="leg a"><rect x="48" y="56" width="6" height="28" rx="3" fill="var(--cream)"/></g>
+          <g class="leg a"><rect x="72" y="56" width="6" height="28" rx="3" fill="var(--cream)"/></g>
+          <g class="leg b"><rect x="84" y="56" width="6" height="28" rx="3" fill="var(--cream)"/></g>
+          <!-- body -->
+          <ellipse cx="57" cy="50" rx="34" ry="20" fill="var(--cream)"/>
+          <!-- ear -->
+          <g class="ear"><ellipse cx="84" cy="33" rx="7" ry="3.4" fill="var(--cream)" transform="rotate(-28 84 33)"/></g>
+          <!-- head + muzzle -->
+          <ellipse cx="92" cy="39" rx="14" ry="11" fill="var(--cream)"/>
+          <ellipse cx="106" cy="44" rx="7" ry="5.4" fill="var(--cream)"/>
+          <!-- horns sweeping back -->
+          <path d="M90 28 C92 13 80 9 73 5" fill="none"/>
+          <path d="M96 29 C99 15 89 9 83 4" fill="none"/>
+          <!-- beard -->
+          <path d="M103 49 L102 61 L109 56 Z" fill="var(--cream)"/>
+          <!-- eye -->
+          <circle cx="99" cy="39" r="1.8" fill="var(--night-1)" stroke="none"/>
+        </g>
+      </svg>
+    </div>
+  </div>
 
   <!-- gold corner flourishes -->
   <svg class="corner tl" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.4">
